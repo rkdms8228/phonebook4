@@ -11,6 +11,7 @@
 				   , hp
 				   , company
 			from person
+			order by person_id asc
 		]]>
 	</select>
 	
@@ -20,5 +21,33 @@
 			values (seq_person_id.nextval, #{name}, #{hp}, #{company})
 		]]>
 	</insert>
+	
+	<delete id="personDelete" parameterType="int">
+		<![CDATA[
+			delete from person
+			where person_id = #{personId}
+		]]>
+	</delete>
+	
+	<update id="personUpdate">
+		<![CDATA[
+			update person
+			set name = #{name}
+				, hp = #{hp}
+				, company = #{company}
+			where person_id = #{personId}
+		]]>
+	</update>
+	
+	<select id="getPerson" parameterType="int" resultType="com.javaex.vo.PhoneVo">
+		<![CDATA[
+			select person_id personId
+				   , name
+				   , hp
+				   , company
+			from person
+			where person_id = #{personId}
+		]]>
+	</select>
 
 </mapper>
