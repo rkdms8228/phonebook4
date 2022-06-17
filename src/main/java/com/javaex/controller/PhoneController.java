@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +56,16 @@ public class PhoneController {
 		
 	}
 	
+	//전화번호 등록폼
+	@RequestMapping(value="/writeForm", method={RequestMethod.GET, RequestMethod.POST})
+	public String writeForm2() {
+		
+		System.out.println("PhoneController>writeForm2()");
+		
+		return "writeForm";
+		
+	}
+	
 	//전화번호 등록
 	@RequestMapping(value="/write", method={RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PhoneVo phoneVo) {
@@ -76,7 +87,7 @@ public class PhoneController {
 		
 		//service로 저장하기
 		//PhoneDao phoneDao = new PhoneDao();
-		int count = phoneService.personInsert(phoneVo);
+		int count = phoneService.personInsert2();
 		System.out.println(count);
 		
 		return "redirect:/list";
@@ -90,7 +101,7 @@ public class PhoneController {
 						 @RequestParam("hp") String hp,
 						 @RequestParam("company") String company) {
 		
-		System.out.println("PhoneController>write()");
+		System.out.println("PhoneController>write2()");
 		
 		//파라미터 꺼내기
 		//System.out.println(name);
@@ -124,6 +135,19 @@ public class PhoneController {
 		model.addAttribute("phoneVo", phoneVo);
 		
 		return "modifyForm";
+		
+	}
+	
+	//전화번호 수정폼
+	@RequestMapping(value="/modifyForm2", method={RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm2(Model model, @RequestParam("no") int no) {
+		
+		System.out.println("PhoneController>modifyForm2()");
+		
+		Map<String, Object> pMap = phoneService.getPerson2(no);
+		model.addAttribute("pMap", pMap);
+
+		return "modifyForm2";
 		
 	}
 	
@@ -166,7 +190,7 @@ public class PhoneController {
 	@RequestMapping(value="/delete2", method={RequestMethod.GET, RequestMethod.POST})
 	public String delete2(@RequestParam("no") int num) {
 		
-		System.out.println("PhoneController>delete()");
+		System.out.println("PhoneController>delete2()");
 		
 		//파라미터 꺼내기
 		System.out.println(num);
