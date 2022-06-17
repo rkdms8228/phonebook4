@@ -30,7 +30,8 @@
 				<td>${phoneVo.company}</td>
 			</tr>
 			<tr>
-				<td><a href="modifyForm?no=${phoneVo.personId}">[수정]</a></td>
+				<td><a href="modifyForm?no=${phoneVo.personId}">[수정]</a>
+				<a href="modifyForm2?no=${phoneVo.personId}">[수정2]</a></td>
 				<td><a href="delete/${phoneVo.personId}">[삭제]</a></td>
 			</tr>
 		</table>
