@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +46,26 @@ public class PhoneService {
 		
 	}
 	
+	//전화번호 등록
+	public int personInsert2() {
+		
+		System.out.println("Servise>personInsert2");
+		
+		Map<String, String> pMap = new HashMap<String, String>();
+		pMap.put("name", "김가은");
+		pMap.put("hp", "010-8563-8228");
+		pMap.put("company", "02-8563-8228");
+		
+		int count = phoneDao.personInsert2(pMap);
+		
+		return count;
+		
+	}
+	
 	//전화번호 삭제
 	public int personDelete(int no) {
+		
+		System.out.println("Servise>personDelete");
 		
 		int count = phoneDao.personDelete(no);
 		
@@ -56,6 +76,9 @@ public class PhoneService {
 	//전화번호 수정폼(정보 가져오기)
 	public PhoneVo getPerson(int no) {
 		
+		System.out.println("Servise>getPerson");
+		
+		//PhoneVo phoneVo = phoneDao.getPerson(no);
 		PhoneVo phoneVo = phoneDao.getPerson(no);
 		
 		return phoneVo;
@@ -63,7 +86,20 @@ public class PhoneService {
 	}
 	
 	//전화번호 수정폼(정보 가져오기)
+	public Map<String, Object> getPerson2(int no) {
+		
+		System.out.println("Servise>getPerson2");
+		Map<String, Object> pMap = phoneDao.getPerson2(no);
+		System.out.println(pMap);
+		
+		return pMap;
+		
+	}
+	
+	//전화번호 수정
 	public int personUpdate(PhoneVo phoneVo) {
+		
+		System.out.println("Servise>personUpdate");
 		
 		int count = phoneDao.personUpdate(phoneVo);
 		
